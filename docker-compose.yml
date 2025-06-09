@@ -75,6 +75,18 @@ services:
             - "router"
             - "server"
         command: bash -c "/scripts/client.sh && sleep infinity"
+    dns-server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: dns-ad-blocker
+        ports:
+            - "53:53/udp"
+        volumes:
+            - ./:/app
+        cap_add:
+            - NET_ADMIN
+        restart: unless-stopped
 networks:
     net1:
         ipam:

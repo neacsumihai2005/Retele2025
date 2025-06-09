@@ -183,3 +183,105 @@ După ce ați reușit atacul cu ARP spoofing și interceptați toate mesajele, m
 5. Țineți cont de lungimea mesajului pe care îl introduceți pentru ajusta `Sequence Number` (sau `Acknowledgement Number`?), dacă e necesar.
 6. Încercați întâi să captați și să modificați mesajele de pe containerul router pentru a testa TCP hijacking apoi puteți combina exercițiul 1 cu metoda de hijacking.
 7. Scrieți pe teams orice întrebări aveți, indiferent de cât de simple sau complicate vi se par.
+
+# DNS Ad Blocker
+
+A DNS-based ad and tracking blocker inspired by pi-hole. This server blocks known ad and tracking domains by returning 0.0.0.0 for their DNS queries.
+
+## Features
+
+- DNS server implementation in Python
+- Blocks ads and tracking domains
+- Logs blocked requests
+- Generates statistics about blocked domains
+- Docker support for easy deployment
+
+## Prerequisites
+
+- Docker and Docker Compose
+- Python 3.9+ (for local development)
+- Root/Administrator access (to bind to port 53)
+
+## Setup
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd dns-ad-blocker
+```
+
+2. Update the blocklist:
+```bash
+python src/update_blocklist.py
+```
+
+3. Start the DNS server using Docker Compose:
+```bash
+sudo docker-compose up -d
+```
+
+## Configuration
+
+### Setting as Primary DNS
+
+#### Linux
+Edit `/etc/resolv.conf`:
+```
+nameserver 127.0.0.1
+```
+
+#### Windows
+1. Open Network Connections
+2. Right-click your active connection
+3. Select Properties
+4. Select "Internet Protocol Version 4 (TCP/IPv4)"
+5. Click Properties
+6. Select "Use the following DNS server addresses"
+7. Enter 127.0.0.1 as the Preferred DNS server
+
+#### macOS
+1. Open System Preferences
+2. Click Network
+3. Select your active connection
+4. Click Advanced
+5. Go to the DNS tab
+6. Add 127.0.0.1 to the list of DNS servers
+
+## Usage
+
+The DNS server will automatically:
+- Block known ad and tracking domains
+- Log blocked requests to `blocked_requests.json`
+- Generate statistics about blocked domains
+
+To view statistics:
+```bash
+python src/analyze_stats.py
+```
+
+## Files
+
+- `src/dns_server.py`: Main DNS server implementation
+- `src/update_blocklist.py`: Script to update the blocklist
+- `src/analyze_stats.py`: Script to analyze blocked requests
+- `blocked_domains.txt`: List of domains to block
+- `blocked_requests.json`: Log of blocked requests
+- `blocker_statistics.json`: Generated statistics
+
+## Development
+
+To run the server locally without Docker:
+
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the server:
+```bash
+sudo python src/dns_server.py
+```
+
+## License
+
+MIT License
