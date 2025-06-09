@@ -1,0 +1,135 @@
+{
+  "target": "baidu.com",
+  "location": "home",
+  "timestamp": "20250609_233245",
+  "hops": [
+    {
+      "ip": "192.168.1.1",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 1,
+      "time": 1.14
+    },
+    {
+      "ip": "10.0.44.239",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 2,
+      "time": 2.56
+    },
+    {
+      "ip": "10.176.254.1",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 3,
+      "time": 2.89
+    },
+    {
+      "ip": "10.220.184.202",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 4,
+      "time": 10.15
+    },
+    {
+      "ip": "10.221.100.112",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 5,
+      "time": 10.8
+    },
+    {
+      "ip": "10.221.96.48",
+      "country": "Unknown",
+      "region": "Unknown",
+      "city": "Unknown",
+      "hop": 6,
+      "time": 32.32
+    },
+    {
+      "ip": "149.11.228.55",
+      "country": "Germany",
+      "region": "Hesse",
+      "city": "Frankfurt am Main",
+      "lat": 50.1169,
+      "lon": 8.6837,
+      "hop": 8,
+      "time": 48.37
+    },
+    {
+      "ip": "202.97.66.34",
+      "country": "China",
+      "region": "Beijing",
+      "city": "Beijing",
+      "lat": 39.9042,
+      "lon": 116.407,
+      "hop": 10,
+      "time": 234.03
+    },
+    {
+      "ip": "202.97.93.70",
+      "country": "China",
+      "region": "Beijing",
+      "city": "Beijing",
+      "lat": 39.9042,
+      "lon": 116.407,
+      "hop": 11,
+      "time": 245.84
+    },
+    {
+      "ip": "113.96.5.166",
+      "country": "China",
+      "region": "Guangdong",
+      "city": "Guangzhou",
+      "lat": 23.1317,
+      "lon": 113.266,
+      "hop": 12,
+      "time": 224.87
+    },
+    {
+      "ip": "59.37.136.2",
+      "country": "China",
+      "region": "Guangdong",
+      "city": "Guangzhou",
+      "lat": 23.1317,
+      "lon": 113.266,
+      "hop": 14,
+      "time": 347.26
+    },
+    {
+      "ip": "182.61.250.156",
+      "country": "China",
+      "region": "Beijing",
+      "city": "Jinrongjie",
+      "lat": 39.9116,
+      "lon": 116.351,
+      "hop": 15,
+      "time": 225.45
+    },
+    {
+      "ip": "182.61.238.133",
+      "country": "China",
+      "region": "Beijing",
+      "city": "Jinrongjie",
+      "lat": 39.9116,
+      "lon": 116.351,
+      "hop": 16,
+      "time": 235.44
+    },
+    {
+      "ip": "182.61.250.234",
+      "country": "China",
+      "region": "Beijing",
+      "city": "Jinrongjie",
+      "lat": 39.9116,
+      "lon": 116.351,
+      "hop": 17,
+      "time": 245.15
+    }
+  ]
+}

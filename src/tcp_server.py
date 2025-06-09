@@ -1,25 +1,59 @@
-# TCP Server
+#!/usr/bin/env python3
 import socket
-import logging
+import random
 import time
+import string
+import sys
 
-logging.basicConfig(format = u'[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.NOTSET)
+def generate_random_message():
+    """Generează un mesaj aleatoriu"""
+    length = random.randint(10, 50)
+    return f"[SERVER] {''.join(random.choices(string.ascii_letters + string.digits, k=length))}"
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
+def start_server():
+    """Pornește serverul TCP"""
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind(('0.0.0.0', 8081))
+    server.listen(1)
+    print("Serverul așteaptă conexiuni...", flush=True)
+    sys.stdout.flush()
+    
+    while True:
+        try:
+            client, addr = server.accept()
+            print(f"Conexiune acceptată de la {addr}", flush=True)
+            sys.stdout.flush()
+            
+            while True:
+                # Trimite mesaj aleatoriu
+                message = generate_random_message()
+                print(f"Trimit: {message}", flush=True)
+                sys.stdout.flush()
+                client.send(message.encode())
+                
+                # Primește mesaj
+                data = client.recv(1024)
+                if not data:
+                    print("Clientul s-a deconectat", flush=True)
+                    sys.stdout.flush()
+                    break
+                print(f"Am primit: {data.decode()}", flush=True)
+                sys.stdout.flush()
+                
+                time.sleep(2)  # Așteaptă 2 secunde între mesaje
+                
+        except ConnectionResetError:
+            print("Conexiunea a fost resetată de client", flush=True)
+            sys.stdout.flush()
+        except Exception as e:
+            print(f"Eroare: {e}", flush=True)
+            sys.stdout.flush()
+        finally:
+            try:
+                client.close()
+            except:
+                pass
 
-port = 10000
-adresa = 'localhost'
-server_address = (adresa, port)
-sock.bind(server_address)
-logging.info("Serverul a pornit pe %s si portnul portul %d", adresa, port)
-sock.listen(5)
-while True:
-    logging.info('Asteptam conexiui...')
-    conexiune, address = sock.accept()
-    logging.info("Handshake cu %s", address)
-    time.sleep(2)
-    data = conexiune.recv(1024)
-    logging.info('Content primit: "%s"', data)
-    conexiune.send(b"Server a primit mesajul: " + data)
-    conexiune.close()
-sock.close()
+if __name__ == "__main__":
+    start_server()
